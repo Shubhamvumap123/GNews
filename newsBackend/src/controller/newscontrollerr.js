@@ -1,11 +1,13 @@
 const express = require("express");
-const news = require("../model/newsmodel");
+const News = require("../model/newsmodel");
+var cors = require("cors");
+var app = express();
 
-const app = express();
+app.use(cors());
 
 app.get("/", async (req, res) => {
   try {
-    const newss = await news.find().lean().exec();
+    const newss = await News.find().lean().exec();
 
     res.status(200).send(newss);
   } catch (err) {
@@ -15,7 +17,8 @@ app.get("/", async (req, res) => {
 
  app.post("/", async (req, res) => {
    try {
-     const newss = await User.create(req.body);
+     const newss = await News.create(req.body);
+     return res.status(500).send({newss});
    } catch (err) {
      return res.status(500).send({ message: err.message });
    }
