@@ -9,7 +9,7 @@ function news() {
   useEffect(() => {
     const loadUsers = async () => {
       const response = await axios.get("http://localhost:5000/news/");
-      console.log(response.data)
+     // console.log(response.data)
       setusers(response.data);
 
     };
